@@ -1,0 +1,20 @@
+
+#navbar_header{
+    padding: 10px !important;
+    background-color: rgb(255, 121, 73) !important;
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+    font-size: 25px !important;
+}
+.img_logo{
+    height: 100px !important;
+    width: 200px !important;
+}
+.navbar-collapse {
+    margin-left: 12% !important;
+}
+.nav-item{
+    padding: 10px !important;
+}
+#snacks_list{
+    margin-top: 4% !important;
+}

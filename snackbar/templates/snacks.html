@@ -1,15 +1,27 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 <div class="container-fluid" id="snacks_list">
-    <div class="col-md-3">
-        <div class="card">
-            <h3 class="card-header text-white no-margin">X-Bacon </h3>
-            <div class="card-block">
-            <img class="card-img-top" src="http://www.placehold.it/370x200" alt="Card image cap" />
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="row">
+    {% for snack in snacks %}
+        <div class="col-md-3" id="snack_card">
+            <div class="card">
+                <h3 class="card-header text-white no-margin" id="card_header">{{snack.name_snack}} </h3>
+                <div class="card-block">
+                {% with 'img/'|add:snack.snack_img as image_static %}   
+                    <img class="card-img-top" src="{% static image_static %}" id="img_snack" alt="Card image cap" />
+                {% endwith %}
+                <p class="card-text">Este lanche contém: 
+                    {% for ingredient in snack.ingredients_list %}
+                        {{ingredient.name}}
+                    {% endfor %}
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
             </div>
         </div>
-    </div>
+    {% endfor %}
 </div>
+</div>
+
 {% endblock %}

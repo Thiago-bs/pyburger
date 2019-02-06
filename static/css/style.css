@@ -9,6 +9,11 @@
     height: 100px !important;
     width: 200px !important;
 }
+#img_snack{
+    height: 250px !important;
+    width: 250px !important;
+    margin-left: 20% !important;
+}
 .navbar-collapse {
     margin-left: 12% !important;
 }
@@ -16,5 +21,11 @@
     padding: 10px !important;
 }
 #snacks_list{
-    margin-top: 4% !important;
+    margin-top: 1% !important;
+    padding: 70px !important;
+}
+#card_header{
+    background-color: rgb(240, 100, 49) !important;;
+}
+#snack_card{
 }

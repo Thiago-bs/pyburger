@@ -15,25 +15,23 @@
 </head>
 <body>
 <nav id="navbar_header" class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a href="/#/"><img src="{% static 'img/logo.jpg' %}" alt="Logo" class="rounded img_logo" ></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse navbarNav">
-         <ul class="navbar-nav">
-            <li {%if request.path == '/snacks/' %}class="nav-item active" {% else %} class="nav-item" {%endif%} >
+    <a class="navbar-brand" href="/#/"><img src="{% static 'img/logo.jpg' %}" alt="Logo" class="rounded img_logo" ></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li {%if request.path == '/snacks/' %}class="nav-item active" {% else %} class="nav-item" {%endif%} >
                 <a  class="nav-link" href="/snacks/"> Lanches </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Promoções</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho </a>
-            </li>
-            </ul> 
-        </div>
-    </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Promoções</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho </a>
+          </li>
+        </ul>
+      </div>
 </nav>
     {% block content %}
     {% endblock %}

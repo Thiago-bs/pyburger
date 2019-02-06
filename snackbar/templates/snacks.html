@@ -4,20 +4,39 @@
 <div class="container-fluid" id="snacks_list">
 <div class="row">
     {% for snack in snacks %}
-        <div class="col-md-3" id="snack_card">
+        <div class="col-md-3 col-xs-12" id="snack_card">
             <div class="card">
                 <h3 class="card-header text-white no-margin" id="card_header">{{snack.name_snack}} </h3>
                 <div class="card-block">
                 {% with 'img/'|add:snack.snack_img as image_static %}   
                     <img class="card-img-top" src="{% static image_static %}" id="img_snack" alt="Card image cap" />
                 {% endwith %}
-                <p class="card-text">Este lanche contém: 
-                    {% for ingredient in snack.ingredients_list %}
-                        {{ingredient.name}}
-                    {% endfor %}
-                </p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
+                <p class="card-body">Este lanche contém: (
+                    {% for ingredient in snack.ingredients_list %}
+                    {% if forloop.last %}
+                    {{ingredient.name}}
+                    {%else%}
+                    {{ingredient.name}} |
+                    {%endif%}    
+                    {% endfor %})
+                </p>
+                <div class="card-footer bg-info text-white">
+                    <div class="row">
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <button type="button" class="btn btn-warning block">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            Editar pedido</button>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-xs-12">
+                        <button type="button" class="btn btn-success block">
+                        <i class="fa fa-plus" aria-hidden="true"></i> 
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>  
+                         Carrinho </button>
+                    </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     {% endfor %}

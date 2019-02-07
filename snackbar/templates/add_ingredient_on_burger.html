@@ -14,18 +14,19 @@
                             min="0" 
                             class="form-control">
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-secondary">
+                            <button type="button" class="btn btn-secondary" onclick="inputValues('input_{{ingredient.id}}', 0)">
                                 <i class="fa fa-minus-circle" aria-hidden="true"></i>
                             </button>
                         </div>
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-success">
+                            <button type="button" class="btn btn-success"  onclick="inputValues('input_{{ingredient.id}}', 1)">
                                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
                 </div>
             {% endfor %}
+            <h3 class="card-title text-right" id="value">Valor: </h3>
             <button type="button" class="btn btn-primary block">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                      Carrinho 
@@ -36,8 +37,31 @@
 </div>
 
 <script>
-    function input_values(input, type){
+    $( document ).ready(function() {
+        productValue();
+    });
+    function productValue(){
+        let qtdLecture = parseInt($('#input_0').val());
+        let qtdBacon = parseInt($('#input_1').val());
+        let qtdBurger = parseInt($('#input_2').val());
+        let qtdEgg = parseInt($('#input_3').val());
+        let qtdCheese = parseInt($('#input_4').val());
+        total = (qtdLecture * 0.4) + (qtdBacon * 2) + (qtdBurger * 3) + (qtdEgg * 0.8) + (qtdCheese * 1.5);
 
+        $('#value').text("Valor R$: " + total.toFixed(2).toString());
+    }
+
+    function inputValues(input, type){
+        let inputValue = parseInt($('#'+input).val());
+        if(type==0){
+            if(inputValue != 0){
+                $('#'+input).val(inputValue-1);
+                productValue();
+            }
+        }else{
+            $('#'+input).val(inputValue+1);
+            productValue();
+        }
     }
 </script>
 {% endblock content%}

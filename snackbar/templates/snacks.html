@@ -14,11 +14,13 @@
                 </div>
                 <p class="card-body">Este lanche contém: (
                     {% for ingredient in snack.ingredients_list %}
-                    {% if forloop.last %}
-                    {{ingredient.name}}
-                    {%else%}
-                    {{ingredient.name}} |
-                    {%endif%}    
+                    {% if ingredient.amount > 0 %}
+                        {% if forloop.last %}
+                        {{ingredient.name}}
+                        {%else%}
+                        {{ingredient.name}} |
+                        {%endif%} 
+                    {% endif %}
                     {% endfor %})
                 </p>
                 <div class="card-footer bg-info text-white">

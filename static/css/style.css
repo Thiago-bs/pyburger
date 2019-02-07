@@ -40,3 +40,14 @@
   #snack_card{
       padding-bottom: 15px !important;
   }
+
+  #myPanel{
+      background-color: aqua;
+  }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

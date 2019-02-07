@@ -1,8 +1,9 @@
 class Ingredient():
-    def __init__(self, idx, name, value):
+    def __init__(self, idx, name, value, amount):
         self._id = idx
         self._name = name
         self._value = value
+        self._amount = amount
     
     @property
     def id(self):
@@ -28,12 +29,29 @@ class Ingredient():
     def name(self, new_value):
         self._value = new_value
 
+    @property
+    def amount(self):
+        return self._amount
+    
+    @amount.setter
+    def amount(self, new_amout):
+        self._amount = new_amout
+
 class Snacks(list):
-    def __init__(self, name_snack, snack_img, ingredients_list):
+    def __init__(self, idx, name_snack, snack_img, ingredients_list):
+        self._id = idx
         self._name_snack = name_snack
         self._snack_img = snack_img
         self._ingredients_list = ingredients_list
     
+    @property
+    def id(self):
+        return self._id
+    
+    @id.setter
+    def id(self, new_id):
+        self._id = new_id
+
     @property
     def name_snack(self):
         return self._name_snack

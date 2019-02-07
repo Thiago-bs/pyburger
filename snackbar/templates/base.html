@@ -10,8 +10,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/sweetalert.min.js' %}"></script>
+    <script src="{% static 'js/myfile.js' %}"></script>
     <link rel="icon" href="{% static 'img/lanche_icon.jpg'%}">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
 </head>
 <body>
 <nav id="navbar_header" class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -24,8 +27,8 @@
           <li {%if request.path == '/snacks/' or '/snacks/more/' in request.path %}class="nav-item active" {% else %} class="nav-item" {%endif%} >
                 <a  class="nav-link" href="/snacks/"> Lanches </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Promoções</a>
+          <li {%if request.path == '/promotions/' %} class="nav-item active" {%else%} class="nav-link" {% endif %} >
+            <a  class="nav-link"  href="/promotions/">Promoções</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho </a>

@@ -4,12 +4,18 @@
 <div class="container"  id="snacks_list">
     <div class="card">
         <div class="card-body">
+            <form id="form-add-car" method="POST" action="/snacks/more/{{snack.id}}/">
             <h3 class="card-title text-center">{{snack.name_snack}} </h3>
+            <input type="hidden" value="{{snack.id}}" name="input_id">
+            <input type="hidden" value="{{snack.name_snack}}" name="input_name">
+            <input type="hidden" value="{{snack.snack_img}}" name="input_img">
             {% for ingredient in snack.ingredients_list%}
                 <div class="form-group">
                     <label>{{ingredient.name}}</label>
                     <div class="input-group">
-                        <input id="input_{{ingredient.id}}" type="number" 
+                        <input id="input_{{ingredient.id}}"
+                            name="input_{{ingredient.id}}"
+                            type="number" 
                             value="{{ingredient.amount}}"
                             min="0" 
                             class="form-control">
@@ -27,11 +33,13 @@
                 </div>
             {% endfor %}
             <h3 class="card-title text-right" id="value">Valor: </h3>
-            <button type="button" class="btn btn-primary block">
+            <button type="button" onclick="sendForm()" class="btn btn-primary block">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                      Carrinho 
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             </button>
+            </form>
+
         </div>
     </div>
 </div>
@@ -40,28 +48,5 @@
     $( document ).ready(function() {
         productValue();
     });
-    function productValue(){
-        let qtdLecture = parseInt($('#input_0').val());
-        let qtdBacon = parseInt($('#input_1').val());
-        let qtdBurger = parseInt($('#input_2').val());
-        let qtdEgg = parseInt($('#input_3').val());
-        let qtdCheese = parseInt($('#input_4').val());
-        total = (qtdLecture * 0.4) + (qtdBacon * 2) + (qtdBurger * 3) + (qtdEgg * 0.8) + (qtdCheese * 1.5);
-
-        $('#value').text("Valor R$: " + total.toFixed(2).toString());
-    }
-
-    function inputValues(input, type){
-        let inputValue = parseInt($('#'+input).val());
-        if(type==0){
-            if(inputValue != 0){
-                $('#'+input).val(inputValue-1);
-                productValue();
-            }
-        }else{
-            $('#'+input).val(inputValue+1);
-            productValue();
-        }
-    }
 </script>
 {% endblock content%}

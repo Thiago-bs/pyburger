@@ -1,11 +1,43 @@
+function promotions(listProducts){
+    let priceLettuce = parseFloat($('#qtd_input_1').val())
+    let priceBacon = parseFloat($('#qtd_input_2').val())
+    let priceBurger = parseFloat($('#qtd_input_3').val())
+    let priceEgg = parseFloat($('#qtd_input_4').val())
+    let priceCheese = parseFloat($('#qtd_input_5').val())
+    let total = 0;
+
+    total = (listProducts[0] * priceLettuce) + (listProducts[1] * priceBacon) + (listProducts[2] * priceBurger) + (listProducts[3] *priceEgg) + (listProducts[4] * priceCheese);
+    if(listProducts[0] > 0 && listProducts[1] == 0){
+        total =   total - (total * 0.1 )  
+    }
+    if(listProducts[1] >= 3 || listProducts[2] >= 3 ){
+        let qtdLessIngredientBacon = Math.floor(listProducts[1]/3);
+        let qtdLessIngredienthamburguer = Math.floor(listProducts[2]/3);
+        qtdLessIngredientBacon =  qtdLessIngredientBacon * priceBacon;
+        qtdLessIngredienthamburguer = qtdLessIngredienthamburguer * priceBurger;
+        total -= qtdLessIngredientBacon;
+        total -= qtdLessIngredienthamburguer;
+    }
+    if(listProducts[4] >= 3){
+        let qtdLessIngredientCheese = Math.floor(listProducts[4]/3);
+        qtdLessIngredientCheese = qtdLessIngredientCheese * priceCheese;
+        total -= qtdLessIngredientCheese;
+    }
+
+    return total 
+
+}
+
+
 
 function productValue(){
-    let qtdLetture = parseInt($('#input_0').val());
+    let qtdLettuce = parseInt($('#input_0').val());
     let qtdBacon = parseInt($('#input_1').val());
     let qtdBurger = parseInt($('#input_2').val());
     let qtdEgg = parseInt($('#input_3').val());
     let qtdCheese = parseInt($('#input_4').val());
-    total = (qtdLetture * 0.4) + (qtdBacon * 2) + (qtdBurger * 3) + (qtdEgg * 0.8) + (qtdCheese * 1.5);
+    let listProducts = [qtdLettuce, qtdBacon, qtdBurger, qtdEgg, qtdCheese]
+    let total = promotions(listProducts)
 
     $('#value').text("Valor R$: " + total.toFixed(2).toString());
 }
@@ -21,13 +53,13 @@ function inputValues(input, type){
         productValue();
     }
 }
-function sendForm(){
-    let qtdLetture = parseInt($('#input_0').val());
+function sendForm(form){
+    let qtdLettuce = parseInt($('#input_0').val());
     let qtdBacon = parseInt($('#input_1').val());
     let qtdBurger = parseInt($('#input_2').val());
     let qtdEgg = parseInt($('#input_3').val());
     let qtdCheese = parseInt($('#input_4').val());
-    let listIngredients = [qtdLetture, qtdBacon, qtdBurger, qtdEgg, qtdCheese]
+    let listIngredients = [qtdLettuce, qtdBacon, qtdBurger, qtdEgg, qtdCheese]
     if(listIngredients.every(hasValue)){
         swal({
             title: "Ops!",
@@ -36,9 +68,15 @@ function sendForm(){
             button: "OK",
             });
     }else{
-        $('#form-add-car').submit();
+        $('#'+form).submit();
     }
 }
 function hasValue(currentValue){
     return currentValue == 0 
 }
+
+setTimeout(function(){
+    if ($('#alert').length > 0) {
+        $('#alert').remove();
+    }
+}, 3000)

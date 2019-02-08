@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+{% for ingredient in ingredients %}
+    <input type="hidden" id="qtd_input_{{ingredient.id}}" value="{{ingredient.value}}">
+{% endfor %}
 <div class="container"  id="snacks_list">
     <div class="card">
         <div class="card-body">
@@ -33,7 +36,7 @@
                 </div>
             {% endfor %}
             <h3 class="card-title text-right" id="value">Valor: </h3>
-            <button type="button" onclick="sendForm()" class="btn btn-primary block">
+            <button type="button" onclick="sendForm('form-add-car')" class="btn btn-primary block">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                      Carrinho 
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -43,7 +46,6 @@
         </div>
     </div>
 </div>
-
 <script>
     $( document ).ready(function() {
         productValue();

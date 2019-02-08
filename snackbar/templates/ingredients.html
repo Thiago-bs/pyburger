@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid" id="snacks_list">
+    <div class="col-md-12 col-lg-12 col-xs-12" id="snack_card">
+        <div class="jumbotron">
+            <div class="card">
+                <h3 class="card-header text-white no-margin text-center" id="card_header"> Ingredientes Disponíveis </h3>
+                <div class="card-body">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col"> Ingrediente </th>
+                                <th scope="col"> Preço por unidade </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <form id="form-ingredient" method="POST" action="/snacks/ingredients/">
+                            {%for ingredient in ingredients%}
+                            <tr>
+                                <td>{{ingredient.name}}</td>
+                                <td> 
+                                    <div class="form-group">
+                                        <input id="input_{{ingredient.id}}"
+                                            name="input_{{ingredient.id}}"
+                                            type="number" 
+                                            value="{{ingredient.value}}"
+                                            min="0" 
+                                            class="form-control">
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </form>
+                        </tbody>
+                    </table>
+                    <button type="button" onclick="sendForm('form-ingredient')" class="btn btn-success pull-right">Salvar alterações</button>
+                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div id="alert" class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert" >
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>{{ message }}</strong> 
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

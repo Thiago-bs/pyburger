@@ -43,7 +43,8 @@ class Snacks(list):
         self._name_snack = name_snack
         self._snack_img = snack_img
         self._ingredients_list = ingredients_list
-    
+        self._price = 0
+
     @property
     def id(self):
         return self._id
@@ -76,3 +77,10 @@ class Snacks(list):
     def ingredients_list(self, new_ingredients_list):
         self._ingredients_list = new_ingredients_list
 
+    @property
+    def price(self):
+        return self._price
+    
+    @price.setter
+    def price(self, new_price):
+        self._price = new_price

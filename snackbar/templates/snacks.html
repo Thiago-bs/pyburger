@@ -6,7 +6,8 @@
     {% for snack in snacks %}
         <div class="col-md-3 col-xs-12" id="snack_card">
             <div class="card">
-                <h3 class="card-header text-white no-margin" id="card_header">{{snack.name_snack}} </h3>
+                <h3 class="card-header text-white no-margin" id="card_header"> {{snack.name_snack}} <b class="text-left">R$: {{snack.price|floatformat:2 }}</b>  </h3>
+
                 <div class="card-block">
                 {% with 'img/'|add:snack.snack_img as image_static %}   
                     <img class="card-img-top" src="{% static image_static %}" id="img_snack" alt="Card image cap" />

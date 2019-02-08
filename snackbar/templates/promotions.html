@@ -1,4 +1,49 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<div class="container-fluid" id="snacks_list">
+    <div class="col-md-12 col-lg-12 col-xs-12" id="snack_card">
+        <div class="jumbotron">
+            <div class="card">
+                <h3 class="card-header text-white no-margin text-center" id="card_header"> Promoções Disponíveis </h3>
+                <div class="card-body">
+                    <table class="table table-bordered text-center">
+                        <tr>
+                            <td>
+                                <b>Nome da promoção</b>
+                            </td>
+                            <td>
+                                <b>Descrição da promoção</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    Light
+                            </td>
+                            <td>
+                                Para lanches que possuem alface e não tem bacon, ganha-se 10% de desconto na compra de seu lanche!
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    Muita carne
+                            </td>
+                            <td>
+                                A cada 3 porções de carne o cliente só paga 2. Se o lanche tiver 6 porções você pagará 4 e assim por diante...
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    Muito queijo
+                            </td>
+                            <td>
+                                Caso o seu lanche contenha 3 porções de queijo, você pagará apenas por 2 porções. Se o lanche tiver 6 porções você pagará 4 e assim por diante...
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

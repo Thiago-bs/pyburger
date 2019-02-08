@@ -1,18 +1,27 @@
 from snackbar.modelo import *
-
+from snackbar.models import * 
 def defaultIngrients():
-    lettuce = Ingredient(0,"alface", 0.4, 0)
-    bacon = Ingredient(1,"Bacon", 2, 0)
-    burger = Ingredient(2,"Hambúrguer de carne", 3, 0)
-    egg = Ingredient(3,"Ovo", 0.8, 0)
-    cheese = Ingredient(4,"Queijo", 1.5, 0)
+    lettuce = Ingredient.objects.get(category=1)
+    bacon = Ingredient.objects.get(category=2)
+    burger = Ingredient.objects.get(category=3)
+    egg = Ingredient.objects.get(category=4)
+    cheese = Ingredient.objects.get(category=5)
+
+    lettuce = Ingredient(0,"alface", lettuce.value, 0)
+    bacon = Ingredient(1,"Bacon", bacon.value, 0)
+    burger = Ingredient(2,"Hambúrguer de carne", burger.value, 0)
+    egg = Ingredient(3,"Ovo", egg.value, 0)
+    cheese = Ingredient(4,"Queijo", cheese.value, 0)
     ingredients = [lettuce, bacon, burger, egg, cheese]
+
     return ingredients
 
 def add_default_amount_ingredient(snack, ids_ingredients):
     for ingredient in snack.ingredients_list:
         if ingredient.id in ids_ingredients:
             ingredient.amount = 1
+        else:
+            ingredient.amount = 0
     return snack
 
 def getDefaultSnacks(ingredients):

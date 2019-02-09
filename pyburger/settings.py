@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'snackbar',
-    'tastypie',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

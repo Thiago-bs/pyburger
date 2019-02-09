@@ -1,5 +1,7 @@
 from snackbar.modelo import *
 from snackbar.models import * 
+import json
+
 def defaultIngrients():
     lettuce = Ingredient.objects.get(category=1)
     bacon = Ingredient.objects.get(category=2)
@@ -69,3 +71,62 @@ def snack_from_request(request):
     snack = Snacks(snack_id, snack_name, snack_img, ingredients)
     
     return snack
+
+def get_amount_ingredient_in_list(ingredient_list):
+    qtd_lettuce = 0
+    qtd_bacon = 0
+    qtd_burger = 0
+    qtd_egg = 0
+    qtd_cheese = 0
+    for ingredient in ingredient_list:
+        if ingredient == 'Alface':
+            qtd_lettuce += 1
+        if ingredient == 'Bacon':
+            qtd_bacon += 1
+        if ingredient == 'Hambúrguer de carne':
+            qtd_burger += 1
+        if ingredient == 'Ovo':
+            qtd_egg += 1
+        if ingredient == 'Queijo':
+            qtd_cheese += 1
+
+    return {'qtd_lettuce': qtd_lettuce, 
+            'qtd_bacon':qtd_bacon,
+            'qtd_burger':qtd_burger,
+            'qtd_egg':qtd_egg,
+            'qtd_cheese':qtd_cheese}
+
+
+#use o retorno do metodo get_amount_ingredient_in_list
+def get_price_of_snack(amount_of_ingredients):
+    price = 0
+    lettuce = Ingredient.objects.get(category=1)
+    bacon = Ingredient.objects.get(category=2)
+    burger = Ingredient.objects.get(category=3)
+    egg = Ingredient.objects.get(category=4)
+    cheese = Ingredient.objects.get(category=5)
+    price = amount_of_ingredients['qtd_lettuce'] * lettuce.value 
+    price += amount_of_ingredients['qtd_bacon'] * bacon.value
+    price += amount_of_ingredients['qtd_burger'] * burger.value
+    price += amount_of_ingredients['qtd_egg'] * egg.value
+    price += amount_of_ingredients['qtd_cheese'] * cheese.value
+    price = desc_promotions(amount_of_ingredients['qtd_lettuce'],amount_of_ingredients['qtd_bacon'], 
+        amount_of_ingredients['qtd_burger'],amount_of_ingredients['qtd_cheese'], price)
+
+    return price
+
+def desc_promotions(qtd_lettuce, qtd_bacon, qtd_burger, qtd_cheese, price):
+    bacon = Ingredient.objects.get(category=2)
+    burger = Ingredient.objects.get(category=3)
+    cheese = Ingredient.objects.get(category=5)
+
+    if qtd_lettuce > 0 and qtd_bacon == 0:
+        price = price - (price * 0.1) 
+    if qtd_bacon >= 3:
+        price = price - (int(qtd_bacon / 3) * bacon.value)
+    if qtd_burger >= 3:
+        price = price - (int(qtd_burger / 3) * burger.value) 
+    if qtd_cheese >=3:
+        price = price - (int(qtd_cheese / 3) * cheese.value)
+
+    return price

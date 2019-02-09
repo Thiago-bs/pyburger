@@ -10,8 +10,8 @@
             <form id="form-add-car" method="POST" action="/snacks/more/{{snack.id}}/">
             <h3 class="card-title text-center">{{snack.name_snack}} </h3>
             <input type="hidden" value="{{snack.id}}" name="input_id">
-            <input type="hidden" value="{{snack.name_snack}}" name="input_name">
-            <input type="hidden" value="{{snack.snack_img}}" name="input_img">
+            <input type="hidden" id="input_name" value="{{snack.name_snack}}" name="input_name">
+            <input type="hidden" id="input_img" value="{{snack.snack_img}}" name="input_img">
             {% for ingredient in snack.ingredients_list%}
                 <div class="form-group">
                     <label>{{ingredient.name}}</label>
@@ -36,7 +36,7 @@
                 </div>
             {% endfor %}
             <h3 class="card-title text-right" id="value">Valor: </h3>
-            <button type="button" onclick="sendForm('form-add-car')" class="btn btn-primary block">
+            <button type="button" onclick="addSnackOnCar('form-add-car')" class="btn btn-primary block">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                      Carrinho 
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -50,5 +50,8 @@
     $( document ).ready(function() {
         productValue();
     });
+  
+    
+    
 </script>
 {% endblock content%}

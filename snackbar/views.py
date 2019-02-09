@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.urls import path
 from snackbar.modelo import *
@@ -10,6 +12,7 @@ from django.http import JsonResponse
 import json
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
+
 
 @api_view(['POST'])
 def buy_snack(snack_id):

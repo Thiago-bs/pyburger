@@ -1,6 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from snackbar.modelo import *
 from snackbar.models import * 
 import json
+
 
 def defaultIngrients():
     lettuce = Ingredient.objects.get(category=1)
@@ -116,6 +119,7 @@ def get_price_of_snack(amount_of_ingredients):
 
     return price
 
+
 def desc_promotions(qtd_lettuce, qtd_bacon, qtd_burger, qtd_cheese, price):
     bacon = Ingredient.objects.get(category=2)
     burger = Ingredient.objects.get(category=3)
@@ -126,7 +130,7 @@ def desc_promotions(qtd_lettuce, qtd_bacon, qtd_burger, qtd_cheese, price):
         price = price - (int(qtd_burger / 3) * burger.value) 
     if qtd_cheese >= 3:
         price = price - (int(qtd_cheese / 3) * cheese.value)
-        
+
     if qtd_lettuce > 0 and qtd_bacon == 0:
         price = price - (price * 0.1) 
     return price

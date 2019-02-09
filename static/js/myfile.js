@@ -8,12 +8,7 @@ function promotions(listProducts){
     let desc = 0;
     total = (listProducts[0] * priceLettuce) + (listProducts[1] * priceBacon) + (listProducts[2] * priceBurger) + (listProducts[3] *priceEgg) + (listProducts[4] * priceCheese);
     totalNoDesc = total;
-    if(listProducts[0] > 0 && listProducts[1] == 0){
-        desc += (total * 0.1 );
-        total =   total - (total * 0.1 );  
-    }
     if(listProducts[1] >= 3 || listProducts[2] >= 3 ){
-
         let qtdLessIngredientBacon = Math.floor(listProducts[1]/3);
         let qtdLessIngredienthamburguer = Math.floor(listProducts[2]/3);
         qtdLessIngredientBacon =  qtdLessIngredientBacon * priceBacon;
@@ -21,13 +16,16 @@ function promotions(listProducts){
         total -= qtdLessIngredientBacon;
         total -= qtdLessIngredienthamburguer;
         desc += qtdLessIngredientBacon + qtdLessIngredienthamburguer;
-
     }
     if(listProducts[4] >= 3){
         let qtdLessIngredientCheese = Math.floor(listProducts[4]/3);
         qtdLessIngredientCheese = qtdLessIngredientCheese * priceCheese;
         total -= qtdLessIngredientCheese;
         desc += qtdLessIngredientCheese;
+    }
+    if(listProducts[0] > 0 && listProducts[1] == 0){
+        desc += (total * 0.1 );
+        total =   total - (total * 0.1 );  
     }
     let responseValues = {'total':total, 'totalNoDesc': totalNoDesc, 'Desc': desc };
     return responseValues
@@ -169,7 +167,7 @@ function sendForm(form){
     priceCheese = parseFloat($('#input_5').val());
     listPrisces = [priceLettuce, priceBacon, priceBurger, priceEgg, priceCheese];
     if(!listPrisces.every(moreThanZero)){
-        sweetalerts("Ops!", "Ingredientes não podem ter o valor de 0, porfavor verifique os valores!", "error", false)
+        sweetalerts("Ops!", "Ingredientes não podem ter o valor igual a 0, por favor verifique os valores!", "error", false)
     }else{
         $('#'+form).submit();
     }

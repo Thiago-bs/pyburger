@@ -105,6 +105,7 @@ def get_price_of_snack(amount_of_ingredients):
     burger = Ingredient.objects.get(category=3)
     egg = Ingredient.objects.get(category=4)
     cheese = Ingredient.objects.get(category=5)
+
     price = amount_of_ingredients['qtd_lettuce'] * lettuce.value 
     price += amount_of_ingredients['qtd_bacon'] * bacon.value
     price += amount_of_ingredients['qtd_burger'] * burger.value
@@ -119,14 +120,13 @@ def desc_promotions(qtd_lettuce, qtd_bacon, qtd_burger, qtd_cheese, price):
     bacon = Ingredient.objects.get(category=2)
     burger = Ingredient.objects.get(category=3)
     cheese = Ingredient.objects.get(category=5)
-
-    if qtd_lettuce > 0 and qtd_bacon == 0:
-        price = price - (price * 0.1) 
     if qtd_bacon >= 3:
         price = price - (int(qtd_bacon / 3) * bacon.value)
     if qtd_burger >= 3:
         price = price - (int(qtd_burger / 3) * burger.value) 
-    if qtd_cheese >=3:
+    if qtd_cheese >= 3:
         price = price - (int(qtd_cheese / 3) * cheese.value)
-
+        
+    if qtd_lettuce > 0 and qtd_bacon == 0:
+        price = price - (price * 0.1) 
     return price

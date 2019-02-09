@@ -5,27 +5,34 @@ function promotions(listProducts){
     let priceEgg = parseFloat($('#qtd_input_4').val())
     let priceCheese = parseFloat($('#qtd_input_5').val())
     let total = 0;
-
+    let desc = 0;
     total = (listProducts[0] * priceLettuce) + (listProducts[1] * priceBacon) + (listProducts[2] * priceBurger) + (listProducts[3] *priceEgg) + (listProducts[4] * priceCheese);
+    totalNoDesc = total;
     if(listProducts[0] > 0 && listProducts[1] == 0){
-        total =   total - (total * 0.1 )  
+        desc += (total * 0.1 );
+        total =   total - (total * 0.1 );  
     }
     if(listProducts[1] >= 3 || listProducts[2] >= 3 ){
+
         let qtdLessIngredientBacon = Math.floor(listProducts[1]/3);
         let qtdLessIngredienthamburguer = Math.floor(listProducts[2]/3);
         qtdLessIngredientBacon =  qtdLessIngredientBacon * priceBacon;
         qtdLessIngredienthamburguer = qtdLessIngredienthamburguer * priceBurger;
         total -= qtdLessIngredientBacon;
         total -= qtdLessIngredienthamburguer;
+        desc += qtdLessIngredientBacon + qtdLessIngredienthamburguer;
+
     }
     if(listProducts[4] >= 3){
         let qtdLessIngredientCheese = Math.floor(listProducts[4]/3);
         qtdLessIngredientCheese = qtdLessIngredientCheese * priceCheese;
         total -= qtdLessIngredientCheese;
+        desc += qtdLessIngredientCheese;
     }
-
-    return total 
+    let responseValues = {'total':total, 'totalNoDesc': totalNoDesc, 'Desc': desc };
+    return responseValues
 }
+
 
 function productValue(){
     let qtdLettuce = parseInt($('#input_0').val());
@@ -34,9 +41,10 @@ function productValue(){
     let qtdEgg = parseInt($('#input_3').val());
     let qtdCheese = parseInt($('#input_4').val());
     let listProducts = [qtdLettuce, qtdBacon, qtdBurger, qtdEgg, qtdCheese]
-    let total = promotions(listProducts)
-
-    $('#value').text("Valor R$: " + total.toFixed(2).toString());
+    let responseValues = promotions(listProducts)
+    $('#value').text("Valor a pagar R$: " + responseValues['total'].toFixed(2).toString());
+    $('#valueTNoDesc').text("Valor total sem descontos R$: "+ responseValues['totalNoDesc'].toFixed(2).toString());
+    $('#valueDesc').text("Valor do desconto R$: "+responseValues['Desc'].toFixed(2).toString());
 }
 function inputValues(input, type){
     let inputValue = parseInt($('#'+input).val());
@@ -146,4 +154,9 @@ function createListIngredients(ingredients, amountLoop, text){
         
     }
     return ingredients;
+}
+
+
+function sendForm(form){
+   $('#'+form).submit();
 }

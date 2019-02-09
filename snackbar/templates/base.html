@@ -23,7 +23,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <li class="nav-item">
+            <li {%if request.path == '/snacks/ingredients/' %}class="nav-item active" {% else %} class="nav-item" {%endif%} >
                 <a class="nav-link" href="/snacks/ingredients/"><i class="fa fa-cutlery" aria-hidden="true"></i> Ingredientes </a>
             </li>
             <li {%if request.path == '/snacks/' or '/snacks/more/' in request.path %}class="nav-item active" {% else %} class="nav-item" {%endif%} >
@@ -32,14 +32,39 @@
             <li {%if request.path == '/promotions/' %} class="nav-item active" {%else%} class="nav-link" {% endif %} >
                 <a  class="nav-link"  href="/promotions/">Promoções</a>
             </li>
-            <li class="nav-item">
+            <li {%if request.path == '/shoppingcar/' %} class="nav-item active" {% else %}class="nav-item" {% endif %}>
                 <a class="nav-link" href="/shoppingcar/"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrinho
                     {% if sopping_cart.count > 0 %} <i class="numberCircle">{{sopping_cart.count}} </i>{% endif %} </a>
+            </li>
+            <li {%if request.path == '/snacks/controle/' %} class="nav-item active" {% else %}class="nav-item" {% endif %}>
+                <a class="nav-link" {%if request.path != '/snacks/controle/' %} onclick="buyControll()" {% endif %}><i class="fa fa-check-square-o" aria-hidden="true"></i> Controle
+                 </a>
             </li>
         </ul>
       </div>
 </nav>
     {% block content %}
     {% endblock %}
+    <script>
+        function buyControll(){
+            swal({
+            text: 'Acesso restrito digite a senha 123, para entrar!".',
+            content: "input",
+            button: {
+                text: "Confirmar",
+                closeModal: false,
+            },
+            }).then(password => {
+                if(password=='123'){
+                    swal.close();
+                    window.location.href = "/snacks/controle/";
+
+                }else{
+                    return swal("Senha incorreta!");
+                }
+            });
+        }
+      
+    </script>
 </body>
 </html>

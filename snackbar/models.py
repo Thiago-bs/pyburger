@@ -17,3 +17,4 @@ class SoppingCart(models.Model):
     amount_egg = models.IntegerField(null=False, verbose_name="Quantidade de ovo")
     amount_cheese = models.IntegerField(null=False, verbose_name="Quantidade de queijo")
     price = models.FloatField(null=True, verbose_name="Valor do lanche")
+    is_buy = models.BooleanField(null=False, default=False, verbose_name="True - Lanche comprado, False - No carrinho.")

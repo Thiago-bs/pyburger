@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid" id="snacks_list">
+        <div class="col-md-12 col-lg-12 col-xs-12" id="snack_card">
+            <div class="jumbotron">
+                <div class="card">
+                    <h3 class="card-header text-white no-margin text-center" id="card_header"> Lanches comprados </h3>
+                    <div class="card-body">
+                        <table class="table table-bordered text-center">
+                           <tr>
+                               <td>
+                                   <b>Nome do lanche</b>
+                               </td>
+                               <td>
+                                   <b>Preço do lanche</b>
+                               </td>
+                            </tr>
+                            {%for snack in buy_snacks%}
+                            <tr>
+                                <td>
+                                    {{snack.name_snack}}
+                                </td>
+                                <td>
+                                    {{snack.price|floatformat:2 }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        <div class="pagination">
+                            <span class="step-links">
+                                {% if buy_snacks.has_previous %}
+                                <a class="btn btn-md btn-primary" href="?page={{ buy_snacks.previous_page_number }}{% for k,v in request.GET.buy_snacks %}{% if k != 'page' %}&{{k}}={{v}}{% endif %}{% endfor %}">Anterior</a>
+                                {% endif %}
+                            
+                                <span class="current">
+                                Página {{ buy_snacks.number }} de {{ buy_snacks.paginator.num_pages }}.
+                                </span>
+                            
+                                {% if buy_snacks.has_next %}
+                                <a class="btn btn-md btn-primary" href="?page={{ buy_snacks.next_page_number }}{% for k,v in request.GET.buy_snacks %}{% if k != 'page' %}&{{k}}={{v}}{% endif %}{% endfor %}">Próximo</a>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

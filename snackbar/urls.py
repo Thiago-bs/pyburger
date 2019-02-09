@@ -13,5 +13,6 @@ urlpatterns = [
     path('addtocart/', views.add_to_cart),
     path('shoppingcar/', views.shopping_car),
     path('excludesnack/', views.exclude_snack),
-    path('getsnackdetail/', views.get_snack_detail)
+    path('buysnack/', views.buy_snack),
+    path('snacks/controle/', views.snack_controll)
 ]

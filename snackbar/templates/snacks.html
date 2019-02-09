@@ -18,7 +18,7 @@
                                     <img class="card-img-top" src="{% static image_static %}" id="img_snack" alt="Card image cap" />
                                 {% endwith %}
                                 </div>
-                                <p class="card-body">Este lanche contém: (
+                                <p class="card-body" id="CardBodySnacks">Este lanche contém: (
                                     {% for ingredient in snack.ingredients_list %}
                                     {% if ingredient.amount > 0 %}
                                         <input type="hidden" class="ingredients_{{snack.id}}" value="{{ingredient.name}}">

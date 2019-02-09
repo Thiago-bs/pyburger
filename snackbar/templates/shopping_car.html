@@ -17,7 +17,7 @@
                                     <img class="card-img-top" src="{% static image_static %}" id="img_snack" alt="Card image cap" />
                                 {% endwith %}
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" id="shopCardBody">
                                     {%if snack.amount_lettuce > 0%} <p> {{ snack.amount_lettuce }} - Alface</p>{% endif %}
                                     {%if snack.amount_bacon > 0%} <p> {{ snack.amount_bacon }} - Bacon</p>{% endif %}
                                     {%if snack.amount_burger > 0%} <p> {{snack.amount_burger }} - Hambúrguer de carne</p>{% endif %}
@@ -53,7 +53,7 @@
 </div>
 
 <script>
-    
+
     function buySnack(snackId){
         swal({title: "Atenção",text:"Deseja realmente comprar este lanche?", icon: "warning", button: true})
             .then((value) => { if(value){ 

@@ -5,7 +5,7 @@
         <div class="col-md-12 col-lg-12 col-xs-12" id="snack_card">
             <div class="jumbotron">
                 <div class="card">
-                    <h3 class="card-header text-white no-margin text-center" id="card_header"> Lanches comprados </h3>
+                    <h3 class="card-header text-white no-margin text-center" id="card_header"> Lanches vendidos </h3>
                     <div class="card-body">
                         <table class="table table-bordered text-center">
                            <tr>
@@ -22,7 +22,7 @@
                                     {{snack.name_snack}}
                                 </td>
                                 <td>
-                                    {{snack.price|floatformat:2 }}
+                                    R$: {{snack.price|floatformat:2 }}
                                 </td>
                             </tr>
                             {% endfor %}

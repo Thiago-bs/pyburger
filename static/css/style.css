@@ -77,3 +77,10 @@ input::-webkit-inner-spin-button {
   #value{
       color: green;
   }
+  #shopCardBody{
+    height: 250px !important;
+    
+  }
+  #CardBodySnacks{
+    height: 140px !important;
+  }

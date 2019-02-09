@@ -156,7 +156,22 @@ function createListIngredients(ingredients, amountLoop, text){
     return ingredients;
 }
 
+function moreThanZero(priceOfIngredient){
+    return priceOfIngredient > 0;
+
+}
 
 function sendForm(form){
-   $('#'+form).submit();
+    priceLettuce = parseFloat($('#input_1').val());
+    priceBacon = parseFloat($('#input_2').val());
+    priceBurger = parseFloat($('#input_3').val());
+    priceEgg = parseFloat($('#input_4').val());
+    priceCheese = parseFloat($('#input_5').val());
+    listPrisces = [priceLettuce, priceBacon, priceBurger, priceEgg, priceCheese];
+    if(!listPrisces.every(moreThanZero)){
+        sweetalerts("Ops!", "Ingredientes não podem ter o valor de 0, porfavor verifique os valores!", "error", false)
+    }else{
+        $('#'+form).submit();
+    }
+
 }

@@ -3,23 +3,23 @@ Prova Técnica - Python.
 <p><b>Para executar o projeto, leia o documento Instrucoes_para_executar.pdf, neste documento é demonstrado como instalar as depencias que no caso são PYTHON3, VIRTUALENV E DOCKER no sistema operacional Ubuntu 18 </b><p>
 <p> Caso você já tenha essas dependencias instaladas, basta executar os comandos abaixo:
 
-Para executar o projeto no local
-1 - mkdir ~/avaliacao
-2 - cd ~/avaliacao
-3 - virtualenv -p python3 pyburgerenv       
-4  - source ~/avaliacao/pyburgerenv/bin/activate
-5 - git clone https://github.com/Thiago-bs/pyburger.git
-6 - cd ~/avaliacao/pyburger/
-7 - pip install -r requirements.txt 
-8 - python manage.py runserver
+<p>Para executar o projeto no local</p>
+<p>1 - mkdir ~/avaliacao</p>
+<p>2 - cd ~/avaliacao</p>
+<p>3 - virtualenv -p python3 pyburgerenv</p>       
+<p>4  - source ~/avaliacao/pyburgerenv/bin/activate</p>
+<p>5 - git clone https://github.com/Thiago-bs/pyburger.git</p>
+<p>6 - cd ~/avaliacao/pyburger/</p>
+<p>7 - pip install -r requirements.txt</p> 
+<p>8 - python manage.py runserver</p>
 
-Para executar o projeto com docker
-1 - cd ~/avaliacao/pyburger/
-Na primeira execução utilizar o comando docker-compose build, para carregar as dependencias necessarias.
-2 - sudo su
-3 - docker-compose build
-Para execução da aplicação, executar o comando docker-compose up e para não travar o terminal utilizar o -d
-4 - docker-compose up -d
-5 - abrir o seu navegador de preferência e digitar localhost:80 ou simplesmente localhost.
+<p>Para executar o projeto com docker</p>
+<p>1 - cd ~/avaliacao/pyburger/</p>
+<p>Na primeira execução utilizar o comando docker-compose build, para carregar as dependencias necessarias.</p>
+<p>2 - sudo su</p>
+<p>3 - docker-compose build</p>
+<p>Para execução da aplicação, executar o comando docker-compose up e para não travar o terminal utilizar o -d </p>
+<p>4 - docker-compose up -d </p>
+<p>5 - abrir o seu navegador de preferência e digitar localhost:80 ou simplesmente localhost. </p>
 </p>
 

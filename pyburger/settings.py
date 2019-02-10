@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'snackbar',
     'rest_framework',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [

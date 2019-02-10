@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 
+
 <div class="container-fluid" id="snacks_list">
     <div class="col-md-12 col-lg-12 col-xs-12" id="snack_card">
         <div class="jumbotron">
@@ -24,10 +25,12 @@
                                     <div class="form-group">
                                         <input id="input_{{ingredient.id}}"
                                             name="input_{{ingredient.id}}"
-                                            type="number" 
-                                            value="{{ingredient.value}}"
+                                            type="text" 
+                                            value="{{ingredient.value|floatformat:2}}"
                                             min="0" 
-                                            class="form-control">
+                                            pattern="\d*"
+                                            class="ingredient_input form-control" 
+                                            maxlength="10">
                                     </div>
                                 </td>
                             </tr>
@@ -49,5 +52,7 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(".ingredient_input").maskMoney({prefix:'R$ ', allowNegative: true, thousands:',', decimal:'.', affixesStay: false});
+</script>
 {% endblock %}

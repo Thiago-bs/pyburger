@@ -167,7 +167,7 @@ function sendForm(form){
     priceCheese = parseFloat($('#input_5').val());
     listPrisces = [priceLettuce, priceBacon, priceBurger, priceEgg, priceCheese];
     if(!listPrisces.every(moreThanZero)){
-        sweetalerts("Ops!", "Ingredientes não podem ter o valor igual a 0, por favor verifique os valores!", "error", false)
+        sweetalerts("Ops!", "Ingredientes não podem ter estes valores, por favor verifique os valores e tente novamente!", "error", false)
     }else{
         $('#'+form).submit();
     }

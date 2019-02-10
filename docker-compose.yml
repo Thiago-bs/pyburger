@@ -1,0 +1,30 @@
+version: '3'
+services: 
+  nginx:
+    build:
+      dockerfile: ./docker/nginx.dockerfile
+      context: .
+    image: thiagobs/nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    networks:
+      - pyburger-network
+    depends_on:
+      - "web"
+
+  web:
+    build:
+      dockerfile: ./docker/pyburger.dockerfile
+      context: .
+    image: thiagobs/pyburger
+    container_name: pyburger-app
+    ports:
+      - "80"
+    networks: 
+      - pyburger-network
+
+
+networks: 
+  pyburger-network:
+    driver: bridge
